@@ -1,0 +1,8 @@
+{
+  "name": "Aura Producciones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite",
+  "id": "a62ac3fb"
+}
