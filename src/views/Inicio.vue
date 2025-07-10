@@ -3,7 +3,7 @@
     <ion-content :fullscreen="true" class="ion-padding ">
       <ion-grid>
         <ion-row>
-          <ion-col size="12" size-md="6" size-lg="4" class="ion-text-center px-4">
+          <ion-col size="12" size-md="6" size-lg="8" class="ion-text-center">
             <ion-card class="ai-card pink-border">
               <div class="badge pink">
                 <ion-icon name="image"></ion-icon> AI Art
@@ -14,7 +14,7 @@
               </ion-card-header>
               <ion-card-content>
                 <p>Create stunning, high-resolution images from text prompts in seconds.</p>
-                <ion-button expand="block" color="medium" router-link="https://picoai.app/models/imagen_generator/">
+                <ion-button expand="block" color="medium" router-link="/image-generator">
                   <ion-icon name="brush" slot="start"></ion-icon>
                   Generate Art
                 </ion-button>
@@ -22,7 +22,7 @@
             </ion-card>
           </ion-col>
 
-          <ion-col size="12" size-md="6" size-lg="4" class="ion-text-center px-4 py-4">
+          <ion-col size="12" size-md="6" size-lg="8" class="ion-text-center mt-4 md:mt-0 mx-0 md:px-4">
             <ion-card class="ai-card cyan-border">
               <div class="badge amber">
                 <ion-icon name="create"></ion-icon> Editor

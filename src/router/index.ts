@@ -16,12 +16,15 @@ async function getVersion() {
   }
 }
 
+
 const routes: Array<RouteRecordRaw> = [
+  //redirect
+  // Redirect root to /site
+  // Redirect root to /site
   {
     path: '/',
-    redirect: '/sitio',
+    redirect: '/site',
   },
-
   {
     path: '/probando2',
     component: () => import('@/views/Probando2.vue'),
@@ -34,27 +37,39 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     component: () => import('@/views/Login.vue'),
   },
+
   {
-    path: '/sitio',
+    path: '/site',
     component: () => import('@/layouts/Sitio.vue'),
     children: [
-      {
-        path: '',
-        component: () => import('@/views/Inicio.vue')
-      },
+      { path: '', component: () => import('@/views/Inicio.vue') },
+      { path: '/veo-3', component: () => import('@/views/VeoProfesional.vue') },
+      { path: '/image-generator', component: () => import('@/views/ImageGenerator.vue') },
+      // { path: 'image-editor', component: () => import('@/views/ImageEditor.vue') },
+      // { path: 'photo-to-painting', component: () => import('@/views/PhotoToPainting.vue') },
+      // { path: 'cartoonify', component: () => import('@/views/Cartoonify.vue') },
+      // { path: 'baby-version', component: () => import('@/views/BabyVersion.vue') },
+      // { path: 'image-to-video', component: () => import('@/views/ImageToVideo.vue') },
     ]
   },
+
   {
     path: '/admin',
     component: () => import('@/layouts/Admin.vue'),
     meta: { requiresAuth: true, permission: ['admin'] },
     children: [
-      {
-        path: '',
-        component: () => import('@/views/Inicio.vue')
-      },
+      { path: '', component: () => import('@/views/Inicio.vue') },
     ]
   },
+
+  // Multimedia
+  { path: '/videos', component: () => import('@/views/Videos.vue') },
+  { path: '/images', component: () => import('@/views/Images.vue') },
+
+
+  // Configuración
+  { path: '/profile', component: () => import('@/views/Profile.vue') },
+  { path: '/ayuda', component: () => import('@/views/Help.vue') },
 ];
 
 const router = createRouter({

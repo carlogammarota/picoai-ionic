@@ -3,8 +3,9 @@
   <ion-menu  menu-id="first-menu" content-id="main-content"
   type="overlay"
   class="driver-menu pb-8"
- 
-  :is-open="isOpen">
+  :is-open="isOpen" autoHide="false" @ionWillClose="closeMenu"
+  @ionWillOpen="menuStore.openMenu()"
+  >
     <ion-header class="bg-white">
       <ion-toolbar class="bg-white">
         <div class="flex items-center px-4 py-3">
@@ -19,109 +20,92 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <div class="flex flex-col gap-3">
-        <!-- 📁 Navegación principal -->
-        <div>
-          
-          <p class="text-xs text-gray-400 uppercase px-4">Navegación</p>
-          <ion-list lines="none">
-            <ion-item button router-link="/">
-              <ion-icon :icon="homeOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Inicio</ion-label>
-            </ion-item>
-            <ion-item button router-link="/radio">
-              <ion-icon :icon="radioOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Radio en Vivo</ion-label>
-            </ion-item>
-            <ion-item button router-link="/podcasts">
-              <ion-icon :icon="micOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Podcasts</ion-label>
-            </ion-item>
-            <ion-item button router-link="/eventos">
-              <ion-icon :icon="calendarOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Eventos</ion-label>
-            </ion-item>
-            <ion-item button router-link="/programacion">
-              <ion-icon :icon="timeOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Programación</ion-label>
-            </ion-item>
-            <ion-item button router-link="/chat">
-              <ion-icon :icon="chatbubblesOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Chat</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
+  <div class="flex flex-col gap-3">
+    <!-- 📁 Modelos -->
+    <div>
+      <p class="text-xs text-gray-400 uppercase px-4">Models</p>
+      <ion-list lines="none">
+        <ion-item button router-link="/">
+          <ion-icon :icon="homeOutline" 
+           slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>ALL</ion-label>
+        </ion-item>
+        <ion-item button router-link="/veo-3" @click="closeMenu">
+          <ion-icon :icon="eyeOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>VEO 3</ion-label>
+        </ion-item>
+        <ion-item button router-link="/image-generator" @click="closeMenu">
+          <ion-icon :icon="sparklesOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>AI Image Generator</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/image-editor">
+          <ion-icon :icon="colorFilterOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>AI Image Editor</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/photo-to-painting">
+          <ion-icon :icon="brushOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Photo to Painting</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/cartoonify">
+          <ion-icon :icon="happyOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Cartoonify AI</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/baby-version">
+          <ion-icon :icon="accessibilityOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Baby Version AI</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/image-to-video">
+          <ion-icon :icon="filmOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Image to Video AI</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
 
-        <!-- 🎵 Contenido multimedia -->
-        <div>
-          <p class="text-xs text-gray-400 uppercase px-4">Multimedia</p>
-          <ion-list lines="none">
-            <ion-item button router-link="/videos">
-              <ion-icon :icon="videocamOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Videos</ion-label>
-            </ion-item>
-            <ion-item button router-link="/galeria">
-              <ion-icon :icon="imagesOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Galería</ion-label>
-            </ion-item>
-            <ion-item button router-link="/favoritos">
-              <ion-icon :icon="heartOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Favoritos</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
+    <!-- 🎵 Multimedia -->
+    <div>
+      <p class="text-xs text-gray-400 uppercase px-4">Multimedia</p>
+      <ion-list lines="none">
+        <ion-item button router-link="/site/videos">
+          <ion-icon :icon="videocamOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Videos</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/images">
+          <ion-icon :icon="imagesOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Images</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
 
-        <!-- ℹ️ Información -->
-        <div>
-          <p class="text-xs text-gray-400 uppercase px-4">Información</p>
-          <ion-list lines="none">
-            <ion-item button router-link="/nosotros">
-              <ion-icon :icon="informationCircleOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Sobre Nosotros</ion-label>
-            </ion-item>
-            <ion-item button router-link="/equipo">
-              <ion-icon :icon="peopleOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Nuestro Equipo</ion-label>
-            </ion-item>
-            <ion-item button router-link="/contacto">
-              <ion-icon :icon="mailOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Contacto</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
 
-        <!-- ⚙️ Ajustes -->
-        <div>
-          <p class="text-xs text-gray-400 uppercase px-4">Configuración</p>
-          <ion-list lines="none">
-            <ion-item button router-link="/perfil">
-              <ion-icon :icon="personOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Mi Perfil</ion-label>
-            </ion-item>
-            <ion-item button router-link="/notificaciones">
-              <ion-icon :icon="notificationsOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Notificaciones</ion-label>
-            </ion-item>
-            <ion-item button router-link="/ajustes">
-              <ion-icon :icon="settingsOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Ajustes</ion-label>
-            </ion-item>
-            <ion-item button router-link="/ayuda">
-              <ion-icon :icon="helpCircleOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-              <ion-label>Ayuda</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
+    <!-- ⚙️ Configuración -->
+    <div>
+      <p class="text-xs text-gray-400 uppercase px-4">Configuración</p>
+      <ion-list lines="none">
+        <ion-item button router-link="/site/profile">
+          <ion-icon :icon="personCircleOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/ajustes">
+          <ion-icon :icon="constructOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Tools</ion-label>
+        </ion-item>
+        <ion-item button router-link="/site/ayuda">
+          <ion-icon :icon="helpCircleOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+          <ion-label>Help</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
 
-        <!-- 🚪 Cerrar sesión -->
-        <div class="mt-auto px-4 pt-4 mb-16">
-          <ion-button expand="block" color="danger" @click="logout">
-            <ion-icon :icon="logOutOutline" slot="start" style="margin-right: 10px;"></ion-icon>
-            Cerrar Sesión
-          </ion-button>
-        </div>
-      </div>
-    </ion-content>
+    <!-- 🚪 Logout -->
+    <div class="mt-auto px-4 pt-4 mb-16">
+      <ion-button expand="block" color="danger" @click="logout">
+        <ion-icon :icon="logOutOutline" slot="start" style="margin-right: 10px;"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+
   </ion-menu>
 
   <ion-page id="main-content">
@@ -131,7 +115,7 @@
           <ion-menu-button  @click="menuStore.openMenu()"></ion-menu-button>
         </ion-buttons>
         <!-- aca hay que setear el Veo 3 dependiendo de donde esta.  -->
-        <ion-title class="titulo-style cal-sans-regular"><span class="text-blue-400">PicoAI</span>  Veo 3</ion-title>
+        <ion-title class="titulo-style cal-sans-regular"><span class="text-[#001ae7]">PicoAI APP</span></ion-title>
         <ion-buttons slot="end">
           <ion-avatar class="user-avatar">
             <img src="@/assets/picoai.png" alt="Usuario" />
@@ -158,22 +142,19 @@ import {
 
 import {
   homeOutline,
-  radioOutline,
-  micOutline,
-  calendarOutline,
-  timeOutline,
-  chatbubblesOutline,
   videocamOutline,
   imagesOutline,
-  heartOutline,
-  informationCircleOutline,
-  peopleOutline,
-  mailOutline,
-  personOutline,
-  notificationsOutline,
-  settingsOutline,
   helpCircleOutline,
-  logOutOutline
+  logOutOutline,
+  eyeOutline,
+  sparklesOutline,
+  colorFilterOutline,
+  brushOutline,
+  happyOutline,
+  accessibilityOutline,
+  filmOutline,
+  personCircleOutline,
+  constructOutline
 } from 'ionicons/icons'
 
 
@@ -187,9 +168,14 @@ import { useMenuStore } from '@/stores/menuStore';
 const ionRouter = useIonRouter();
 const authStore = useAuthStore();
 const menuStore = useMenuStore();
-const isOpen = computed(() => menuStore.state.isOpen); // <- correcto
+const isOpen = computed(async () => menuStore.state.isOpen); // <- correcto
 
 
+
+  // Escuchar evento de cambio de ruta para cerrar el menú
+  const onRouteChange = async () => {
+    await closeMenu();
+  };
 
   onMounted(async () => {
 
@@ -197,13 +183,18 @@ const isOpen = computed(() => menuStore.state.isOpen); // <- correcto
     const footer = document.querySelector('.resize-vertical');
 
     //hacer resizable el footer
-
-
-
+    //cerrar menu forzar
     
+  window.addEventListener('ionRouteDidChange', onRouteChange);
 
+    // Cerrar el menú al montar el componente
+    menuStore.closeMenu();
 
   });
+
+  const closeMenu = () => {
+    menuStore.closeMenu();
+  }
 
 
 const logout = async () => {
